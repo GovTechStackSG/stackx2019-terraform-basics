@@ -53,17 +53,17 @@
         
         <tr>
         <td>AMI ID:</td>
-        <td>`ami-0fa08c0a6b3f80751`</td>
+        <td>ami-0fa08c0a6b3f80751</pre></td>
         </tr>
 
         <tr>
         <td>Instance Type:</td>
-        <td>`t2.micro`</td>
+        <td>t2.micro</td>
         </tr>
 
         <tr>
         <td>Tags:</td>
-        <td>`Name`</td>
+        <td>Name</td>
         </tr>
         
         </table>
