@@ -10,6 +10,11 @@
           rel="stylesheet"
           integrity="sha384-PQRVhcIuoDbD2sVE+seIbyc6CzUw30zLYhlaJJt0Vw7Zyl7XfunpkeCANaW5A+XZ"
           crossorigin="anonymous"/>
+    <style>
+        pre.language-bash, pre.language-hcl-terraform, pre.language-hcl {
+            cursor: copy;
+        }
+    </style>
 
 </head>
 <body class="d-flex flex-column h-100">
@@ -105,7 +110,7 @@
                 success: function (contents) {
                     $('#content').html(marked(contents));
                     Prism.highlightAll();
-                    new ClipboardJS('pre > code', {
+                    new ClipboardJS('pre.language-bash, pre.language-hcl-terraform, pre.language-hcl', {
                         text: function (trigger) {
                             let text = $(trigger).text();
                             show_alert(`Copied: <pre>${text}</pre>`, 'alert-success');
