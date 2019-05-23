@@ -105,10 +105,10 @@
                 success: function (contents) {
                     $('#content').html(marked(contents));
                     Prism.highlightAll();
-                    new ClipboardJS('.language-bash, .language-hcl', {
+                    new ClipboardJS('pre > code', {
                         text: function (trigger) {
                             let text = $(trigger).text();
-                            show_alert(`Copied <pre>${text}!</pre>`, 'alert-success');
+                            show_alert(`Copied: <pre>${text}</pre>`, 'alert-success');
                             return text;
                         }
                     });
