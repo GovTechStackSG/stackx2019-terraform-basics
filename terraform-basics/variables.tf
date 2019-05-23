@@ -1,6 +1,3 @@
-variable "route53_public_zone_id" {
-
-}
 variable "username" {
 
 }
