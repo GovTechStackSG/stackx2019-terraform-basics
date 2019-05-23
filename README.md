@@ -3,15 +3,20 @@
 
 * Login to your workstation
 
-    | | |
-    |---|---|
-    | Cloud9 URL: | https://user#.stackx.govtechstack.sg/ide.html |
-    | User ID: | user# |  
-    | Password: | password# |
+    <dl>
+    <dt>Cloud9 URL:</dt>
+    <dd>https://user#.stackx.govtechstack.sg/ide.html</dd>
+        
+    <dt>User ID:</dt>
+    <dd>user#</dd>
     
-    Git URL: 
-    https://github.com/GovTechStackSG/stackx2019-terraform-basics
-
+    <dt>Password:</dt>
+    <dd>password#</dd>
+    
+    <dt>Git URL:</dt>
+    <dd>https://github.com/GovTechStackSG/stackx2019-terraform-basics</dd>
+    </dl>
+     
 * Create a basic Terraform configuration
 
     ```bash
