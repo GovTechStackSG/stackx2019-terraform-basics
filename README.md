@@ -37,7 +37,7 @@
     * Initialise your first terraform file - `main.tf`
     * Create provider block for AWS
 
-    ```hcl-terraform
+    ```hcl
     provider "aws" {
       #access_key = "PLEASE_NO_SECRETS_IN_YOUR_TF"
       #secret_key = "WHAT_DID_I_JUST_SAY"
@@ -70,7 +70,7 @@
         
         TIP: You need to start with a resource called `aws_instance`.
     
-        ```hcl-terraform
+        ```hcl
         resource "aws_instance" "web" {
           ami           = "ami-0fa08c0a6b3f80751"
           instance_type = "t2.micro"
@@ -106,7 +106,7 @@
          
     * Define useful output values that will be highlighted to the user when Terraform applies: IP addresses, usernames, generated keys.
      
-        ```hcl-terraform
+        ```hcl
         output "public_ip" {
           value = "${aws_instance.web.public_ip}"
         }
@@ -114,7 +114,7 @@
         
     * Create a new output variable named "public_dns" which outputs the instance's public_dns attribute.
     
-        ```hcl-terraform
+        ```hcl
         output "public_dns" {
           value = "${aws_instance.web.public_dns}"
         }
@@ -140,7 +140,7 @@
     * Define the parameterization of Terraform configurations, using variables.
       Create two variables in the Terraform configuration:      
       * region (default: ap-southeast-1)
-          ```hcl-terraform
+          ```hcl
            variable "region" {
             type    = "string"
             default = "ap-southeast-1"
@@ -148,14 +148,14 @@
           ```
       
       * label (no default value)
-          ```hcl-terraform
+          ```hcl
           variable "label" {
             type = "string"
           }
           ```
 
     * Variables' values can be interpolated into a string using the “${var.<name>}” syntax
-      ```hcl-terraform
+      ```hcl
       resource "aws_instance" "web" {
         ami           = "ami-0b5a47f8865280111"
         instance_type = "t2.micro"
@@ -169,7 +169,7 @@
       ```
 
     * Replace the hard-coded values in main.tf file with references to the newly-defined variables using the interpolation syntax.
-      ```hcl-terraform
+      ```hcl
         variable "region" {
           default = "ap-southeast-1"
         }

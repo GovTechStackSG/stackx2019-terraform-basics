@@ -6,12 +6,45 @@
           rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism.min.css"
+          rel="stylesheet"
+          integrity="sha384-PQRVhcIuoDbD2sVE+seIbyc6CzUw30zLYhlaJJt0Vw7Zyl7XfunpkeCANaW5A+XZ"
+          crossorigin="anonymous"/>
+
 </head>
-<body>
-<div class="container">
-    <div class="contents">
+<body class="d-flex flex-column h-100">
+
+<main role="main" class="flex-shrink-0">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12" id="content">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row fixed-bottom">
+        <div id="alerts" class="col-12">
+        </div>
+    </div>
+
+</main>
+
+
+<div id="alert-template" class="invisible">
+    <div class="alert alert-dismissible fade show" role="alert">
+        <strong>{{{ message }}}</strong>
+        <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.2/marked.min.js"
         integrity="sha384-9bkP/CtE8rvBG0oqbZBIPHS/nNKbIKxm96KBRITeZlqqqIdGTETzv4yocK+P0fY4"
@@ -28,16 +61,57 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js"
+        integrity="sha384-vrOdDDmdPRCIVUD4+UUexSx9sdZ5EnR9GJtg1gjScGZzTsWwcg3g+qbvjIONhGY/"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-bash.min.js"
+        integrity="sha384-Z7WLzyh1z1S1JdPxohj38KZS0qlRQ/I9eP5K0AmNjqj35rR9v1hZN3iW2XzH2m4f"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-hcl.min.js"
+        integrity="sha384-ctC0xOdJQjyc+Ib4JHkMynrUiZCUnbXJFTXNK/UAh20GHsaWt1G2Z8zFZKZA+Coa"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"
+        integrity="sha384-8CYhPwYlLELodlcQV713V9ZikA3DlCVaXFDpjHfP8Z36gpddf/Vrt47XmKDsCttu"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"
+        integrity="sha384-CshXe6yvzsA+7Kb1fIvMqPlkkvLeelv3nspH/zUR748NqOUfTBHQbcS6ZZp0r0yN"
+        crossorigin="anonymous"></script>
 <script>
+
+    let templates = {
+        alert: $('#alert-template').html()
+    };
+    _.each(templates, function (template) {
+        Mustache.parse(template);
+    });
+
+    function show_alert(message, alert_class) {
+        if (_.isEmpty(alert_class)) {
+            alert_class = 'alert-primary';
+        }
+
+        let $alert = $(Mustache.render(templates.alert, {message: message})).addClass(alert_class);
+        $('.alert').remove();
+        $('#alerts').prepend($alert);
+        setTimeout(function () {
+            $('.alert').alert('close');
+        }, 5000);
+    }
 
     $(function () {
         $.ajax(
             'README.md',
             {
                 success: function (contents) {
-                    $('#content').html(marked(contents))
+                    $('#content').html(marked(contents));
+                    Prism.highlightAll();
+                    new ClipboardJS('.language-bash, .language-hcl', {
+                        text: function (trigger) {
+                            let text = $(trigger).text();
+                            show_alert(`Copied <pre>${text}!</pre>`, 'alert-success');
+                            return text;
+                        }
+                    });
                 }
             }
         );
