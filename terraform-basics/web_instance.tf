@@ -1,6 +1,16 @@
+data "aws_ami" "web"{
+  filter {
+    name = "name"
+    values = [
+      "stackx2019-figlet-app.*"]
+  }
+  most_recent = true
+  owners = ["self"]
+}
+
 
 resource "aws_instance" "web" {
-  ami           = "ami-0b5bf80de07b6a667"
+  ami           = "${data.aws_ami.web.id}"
   instance_type = "t2.micro"
 
   tags = {
