@@ -4,7 +4,7 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "${var.label}-HelloStackX"
+    Name = "${var.username}-${var.label}-HelloStackX"
     Creator = "${var.username}"
     TTL = "8"
   }

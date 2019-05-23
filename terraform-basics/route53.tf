@@ -1,5 +1,5 @@
 data "aws_route53_zone" "public" {
-  zone_id = "${var.route53_public_zone_id}"
+  name = "stackx.govtechstack.sg."
 }
 
 resource "aws_route53_record" "web" {
@@ -7,4 +7,5 @@ resource "aws_route53_record" "web" {
   name = "${var.username}-web.${data.aws_route53_zone.public.name}"
   type = "A"
   records = ["${aws_instance.web.public_ip}"]
+  ttl = "300"
 }
