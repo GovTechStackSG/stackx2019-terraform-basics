@@ -3,19 +3,29 @@
 
 * Login to your workstation
 
-    <dl>
-    <dt>Cloud9 URL:</dt>
-    <dd>https://user#.stackx.govtechstack.sg/ide.html</dd>
-        
-    <dt>User ID:</dt>
-    <dd>user#</dd>
+    <table>
     
-    <dt>Password:</dt>
-    <dd>password#</dd>
+    <tr>
+    <td>Cloud9 URL:</td>
+    <td>https://user#.stackx.govtechstack.sg/ide.html</td>
+    </tr>
     
-    <dt>Git URL:</dt>
-    <dd>https://github.com/GovTechStackSG/stackx2019-terraform-basics</dd>
-    </dl>
+    <tr>    
+    <td>User ID:</td>
+    <td>user#</td>
+    </tr>
+    
+    <tr>
+    <td>Password:</td>
+    <td>password#</td>
+    </tr>
+    
+    <tr>
+    <td>Git URL:</td>
+    <td>https://github.com/GovTechStackSG/stackx2019-terraform-basics</td>
+    </tr>
+    
+    </table>
      
 * Create a basic Terraform configuration
 
@@ -39,13 +49,26 @@
 
     * In the same Terraform configuration, main.tf , create an AWS instance with the ID web and the following:
         
-        | | |
-        |---|---|
-        | ami: | ami-0fa08c0a6b3f80751 |
-        | instance_type: | t2.micro |
-        | tags: | Name |
-            
-        TIP: You need to start with a resource called aws_instance.
+        <table>
+        
+        <tr>
+        <td>AMI ID:</td>
+        <td>`ami-0fa08c0a6b3f80751`</td>
+        </tr>
+
+        <tr>
+        <td>Instance Type:</td>
+        <td>`t2.micro`</td>
+        </tr>
+
+        <tr>
+        <td>Tags:</td>
+        <td>`Name`</td>
+        </tr>
+        
+        </table>
+        
+        TIP: You need to start with a resource called `aws_instance`.
     
         ```hcl-terraform
         resource "aws_instance" "web" {
