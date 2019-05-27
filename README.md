@@ -1,5 +1,7 @@
 # Lab Instructions
 
+* A HTML version with code snippets that you can copy is available
+at https://govtechstacksg.github.io/stackx2019-terraform-basics/
 
 * Login to your workstation
 
@@ -26,6 +28,12 @@
     </tr>
     
     </table>
+
+    To create a local copy of this git repository, run the following command
+    in your Cloud9 environment.
+    ```bash
+    git clone https://github.com/GovTechStackSG/stackx2019-terraform-basics
+    ```
      
 * Create a basic Terraform configuration
 
